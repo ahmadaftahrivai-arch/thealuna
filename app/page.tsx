@@ -11,11 +11,11 @@ import { brand } from "@/lib/brand";
 export default async function HomePage() {
   const properties = await getProperties();
 
-  const slides: CarouselSlide[] = properties.map((property) => ({
-    image: property.cover_image,
-    eyebrow: property.location,
-    title: property.name,
-    description: property.tagline,
+  const slides: CarouselSlide[] = brand.highlights.map((h) => ({
+    image: h.image,
+    eyebrow: brand.name,
+    title: h.title,
+    description: h.description,
   }));
 
   const galleryImages = properties.flatMap((property) => [
