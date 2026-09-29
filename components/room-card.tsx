@@ -9,7 +9,7 @@ const currencyFormatter = new Intl.NumberFormat("id-ID", {
 
 export function RoomCard({ room }: { room: RoomType }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm">
       <div className="relative aspect-[4/3] w-full">
         <Image
           src={room.images[0]}
@@ -20,15 +20,15 @@ export function RoomCard({ room }: { room: RoomType }) {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-lg font-semibold">{room.name}</h3>
-        <p className="mt-2 text-sm text-neutral-600">{room.description}</p>
+        <h3 className="font-serif text-lg text-stone-900">{room.name}</h3>
+        <p className="mt-2 text-sm text-stone-600">{room.description}</p>
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-sm text-neutral-500">
+          <span className="text-sm text-stone-500">
             Up to {room.capacity} guests
           </span>
-          <span className="font-semibold">
+          <span className="font-medium text-stone-900">
             {currencyFormatter.format(room.price)}
-            <span className="text-sm font-normal text-neutral-500">
+            <span className="text-sm font-normal text-stone-500">
               /night
             </span>
           </span>

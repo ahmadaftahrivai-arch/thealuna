@@ -3,12 +3,13 @@ import Link from "next/link";
 type NavbarProps = {
   propertyName?: string;
   propertySlug?: string;
+  isHome?: boolean;
 };
 
-export function Navbar({ propertyName, propertySlug }: NavbarProps) {
+export function Navbar({ propertyName, propertySlug, isHome }: NavbarProps) {
   const links = propertySlug
     ? [
-        { href: `/properties/${propertySlug}`, label: "About" },
+        { href: isHome ? "/" : `/properties/${propertySlug}`, label: "About" },
         {
           href: `/properties/${propertySlug}/accommodations`,
           label: "Accommodations",
@@ -19,18 +20,21 @@ export function Navbar({ propertyName, propertySlug }: NavbarProps) {
     : [{ href: "/", label: "Properties" }];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-wide">
+        <Link
+          href="/"
+          className="font-serif text-xl tracking-wide text-stone-900"
+        >
           {propertyName ?? "The Aluna"}
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium uppercase tracking-wide text-neutral-700 md:flex">
+        <nav className="hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.15em] text-stone-600 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-neutral-950"
+              className="transition-colors hover:text-stone-950"
             >
               {link.label}
             </Link>
@@ -39,7 +43,7 @@ export function Navbar({ propertyName, propertySlug }: NavbarProps) {
 
         <Link
           href={propertySlug ? `/properties/${propertySlug}/contact` : "/"}
-          className="rounded-full bg-neutral-950 px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
           Book Now
         </Link>

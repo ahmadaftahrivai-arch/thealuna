@@ -71,12 +71,12 @@ export function InquiryForm({ propertyId, rooms }: InquiryFormProps) {
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Phone / WhatsApp" name="phone" type="tel" required />
         <div>
-          <label className="mb-1 block text-sm font-medium text-neutral-700">
+          <label className="mb-1 block text-sm font-medium text-stone-700">
             Room type
           </label>
           <select
             name="room_type_id"
-            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+            className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm"
           >
             <option value="">No preference</option>
             {rooms.map((room) => (
@@ -102,13 +102,13 @@ export function InquiryForm({ propertyId, rooms }: InquiryFormProps) {
       </div>
 
       <div>
-        <label className="mb-1 block text-sm font-medium text-neutral-700">
+        <label className="mb-1 block text-sm font-medium text-stone-700">
           Message (optional)
         </label>
         <textarea
           name="message"
           rows={4}
-          className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm"
           placeholder="Anything else we should know?"
         />
       </div>
@@ -120,7 +120,7 @@ export function InquiryForm({ propertyId, rooms }: InquiryFormProps) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-neutral-950 px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
+        className="w-full rounded-full bg-stone-900 px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
       >
         {status === "submitting" ? "Sending..." : "Send Inquiry"}
       </button>
@@ -145,7 +145,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-sm font-medium text-neutral-700">
+      <label className="mb-1 block text-sm font-medium text-stone-700">
         {label}
       </label>
       <input
@@ -154,7 +154,7 @@ function Field({
         required={required}
         min={min}
         defaultValue={defaultValue}
-        className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+        className="w-full rounded-lg border border-stone-300 px-3 py-2 text-sm"
       />
     </div>
   );

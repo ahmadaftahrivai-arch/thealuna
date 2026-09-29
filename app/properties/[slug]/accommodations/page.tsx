@@ -12,14 +12,14 @@ export default async function AccommodationsPage({
   const rooms = await getRoomTypesByPropertyId(property.id);
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="text-3xl font-semibold">Accommodations</h1>
-      <p className="mt-2 text-neutral-600">
+    <section className="mx-auto max-w-6xl px-6 py-20">
+      <h1 className="font-serif text-4xl text-stone-900">Accommodations</h1>
+      <p className="mt-2 text-stone-600">
         Room types available at {property.name}.
       </p>
 
       {rooms.length === 0 ? (
-        <p className="mt-10 text-neutral-500">
+        <p className="mt-10 text-stone-500">
           No rooms have been added for this property yet.
         </p>
       ) : (
