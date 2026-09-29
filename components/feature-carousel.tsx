@@ -34,13 +34,15 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
       </div>
 
       <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-          {slide.eyebrow}
-        </p>
-        <h2 className="mt-3 font-bold text-3xl leading-tight text-stone-900 sm:text-4xl">
-          {slide.title}
-        </h2>
-        <p className="mt-4 max-w-md text-stone-600">{slide.description}</p>
+        <div key={index} className="animate-fade-in">
+          <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+            {slide.eyebrow}
+          </p>
+          <h2 className="mt-3 font-bold text-3xl leading-tight text-stone-900 sm:text-4xl">
+            {slide.title}
+          </h2>
+          <p className="mt-4 max-w-md text-stone-600">{slide.description}</p>
+        </div>
 
         {slides.length > 1 && (
           <div className="mt-8 flex items-center gap-6 text-xl text-stone-900">
