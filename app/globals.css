@@ -34,3 +34,12 @@
   animation: fade-in-up 900ms ease-out both;
   animation-delay: 150ms;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

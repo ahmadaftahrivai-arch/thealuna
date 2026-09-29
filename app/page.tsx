@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { GalleryGrid } from "@/components/gallery-grid";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
+import { BranchesCarousel } from "@/components/branches-carousel";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
 
@@ -62,44 +63,9 @@ export default async function HomePage() {
           </Reveal>
         )}
 
-        <Reveal>
-          <section id="locations" className="scroll-mt-20 bg-stone-100 py-24">
-            <div className="mx-auto max-w-6xl px-6">
-              <h2 className="font-bold text-3xl text-stone-900">
-                Our Locations
-              </h2>
-
-              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {properties.map((property, i) => (
-                  <Reveal key={property.id} delay={i * 100}>
-                    <Link
-                      href={`/properties/${property.slug}`}
-                      className="group block overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md"
-                    >
-                      <div className="relative aspect-[4/3] w-full overflow-hidden">
-                        <Image
-                          src={property.cover_image}
-                          alt={property.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        />
-                      </div>
-                      <div className="p-6">
-                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-                          {property.location}
-                        </p>
-                        <h3 className="mt-2 font-bold text-xl text-stone-900">
-                          {property.name}
-                        </h3>
-                      </div>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
-        </Reveal>
+        <section id="locations" className="scroll-mt-20 bg-stone-950 py-24">
+          <BranchesCarousel properties={properties} />
+        </section>
 
         <Reveal>
           <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
