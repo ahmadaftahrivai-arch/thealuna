@@ -1,23 +1,36 @@
 import Link from "next/link";
 
-type NavbarProps = {
-  propertyName?: string;
-  propertySlug?: string;
-  isHome?: boolean;
-};
+type NavbarProps =
+  | { variant?: "brand" }
+  | { variant: "property"; propertyName: string; propertySlug: string };
 
-export function Navbar({ propertyName, propertySlug, isHome }: NavbarProps) {
-  const links = propertySlug
+export function Navbar(props: NavbarProps) {
+  const isProperty = props.variant === "property";
+
+  const links = isProperty
     ? [
-        { href: isHome ? "/" : `/properties/${propertySlug}`, label: "About" },
+        { href: `/properties/${props.propertySlug}`, label: "About" },
         {
-          href: `/properties/${propertySlug}/accommodations`,
+          href: `/properties/${props.propertySlug}/accommodations`,
           label: "Accommodations",
         },
-        { href: `/properties/${propertySlug}/gallery`, label: "Gallery" },
-        { href: `/properties/${propertySlug}/contact`, label: "Contact Us" },
+        { href: `/properties/${props.propertySlug}/gallery`, label: "Gallery" },
+        {
+          href: `/properties/${props.propertySlug}/contact`,
+          label: "Contact Us",
+        },
       ]
-    : [{ href: "/", label: "Properties" }];
+    : [
+        { href: "/", label: "About" },
+        { href: "/accommodations", label: "Accommodations" },
+        { href: "/gallery", label: "Gallery" },
+        { href: "/accommodations", label: "Contact Us" },
+      ];
+
+  const brandLabel = isProperty ? props.propertyName : "The Aluna";
+  const bookNowHref = isProperty
+    ? `/properties/${props.propertySlug}/contact`
+    : "/accommodations";
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200 bg-stone-50/90 backdrop-blur">
@@ -26,13 +39,13 @@ export function Navbar({ propertyName, propertySlug, isHome }: NavbarProps) {
           href="/"
           className="font-serif text-xl tracking-wide text-stone-900"
         >
-          {propertyName ?? "The Aluna"}
+          {brandLabel}
         </Link>
 
         <nav className="hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.15em] text-stone-600 md:flex">
           {links.map((link) => (
             <Link
-              key={link.href}
+              key={link.label}
               href={link.href}
               className="transition-colors hover:text-stone-950"
             >
@@ -42,7 +55,7 @@ export function Navbar({ propertyName, propertySlug, isHome }: NavbarProps) {
         </nav>
 
         <Link
-          href={propertySlug ? `/properties/${propertySlug}/contact` : "/"}
+          href={bookNowHref}
           className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
           Book Now

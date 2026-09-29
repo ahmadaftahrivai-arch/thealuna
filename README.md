@@ -10,18 +10,25 @@ followed up manually).
 
 ### Project structure
 
+The site has two levels: a **brand site** (this company/group) and, under
+it, one **mini-site per property/branch** with its own nav and pages.
+
 ```
 app/
-  page.tsx                          Landing page, lists all properties
+  page.tsx                          Brand homepage (hero, about, locations preview)
+  accommodations/page.tsx           Lists every property/branch
+  gallery/page.tsx                  Photos aggregated across all properties
   properties/[slug]/
-    layout.tsx                      Fetches the property, renders navbar/footer
-    page.tsx                        Property overview (hero, about, rooms, amenities)
-    accommodations/page.tsx         Full room list
-    gallery/page.tsx                Photo gallery
-    contact/page.tsx                Booking inquiry form
+    layout.tsx                      Fetches the property, renders its navbar/footer
+    page.tsx                        That property's own homepage (hero, about, rooms, amenities)
+    accommodations/page.tsx         That property's room types
+    gallery/page.tsx                That property's own gallery
+    contact/page.tsx                Booking inquiry form for that property
   api/inquiries/route.ts            Validates + inserts inquiries into Supabase
-components/                         navbar, footer, room-card, inquiry-form, ...
+components/                         navbar, footer, property-landing, feature-carousel,
+                                     reveal (scroll animation), room-card, inquiry-form, ...
 lib/
+  brand.ts                          Brand-level copy (name, tagline, hero image) for "/"
   data.ts                           Data access layer (Supabase, falls back to mock data)
   mock-data.ts                      Sample property/room data for local dev
   supabase/                         Supabase client factories
@@ -63,8 +70,8 @@ without a Supabase project — useful for building/reviewing UI first.
    **Table Editor** — there's no admin dashboard yet by design (see below).
 
 To add more properties, insert rows into `properties` / `room_types` via the
-Supabase Table Editor and they'll appear automatically at
-`/properties/<slug>`.
+Supabase Table Editor. They'll appear automatically on `/accommodations` and
+at `/properties/<slug>`.
 
 ### Viewing inquiries
 

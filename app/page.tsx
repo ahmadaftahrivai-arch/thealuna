@@ -1,42 +1,140 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { PropertyLanding } from "@/components/property-landing";
-import { getPrimaryProperty, getRoomTypesByPropertyId } from "@/lib/data";
+import { Reveal } from "@/components/reveal";
+import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
+import { getProperties } from "@/lib/data";
+import { brand } from "@/lib/brand";
 
 export default async function HomePage() {
-  const property = await getPrimaryProperty();
+  const properties = await getProperties();
 
-  if (!property) {
-    return (
-      <>
-        <Navbar />
-        <main className="flex-1">
-          <section className="mx-auto max-w-2xl px-6 py-24 text-center">
-            <h1 className="font-serif text-4xl text-stone-900">
-              No properties yet
-            </h1>
-            <p className="mt-4 text-stone-600">
-              Add a property in Supabase (or lib/mock-data.ts) to see it
-              here.
-            </p>
-          </section>
-        </main>
-        <Footer />
-      </>
-    );
-  }
-
-  const rooms = await getRoomTypesByPropertyId(property.id);
+  const slides: CarouselSlide[] = properties.map((property) => ({
+    image: property.cover_image,
+    eyebrow: property.location,
+    title: property.name,
+    description: property.tagline,
+  }));
 
   return (
     <>
-      <Navbar
-        propertyName={property.name}
-        propertySlug={property.slug}
-        isHome
-      />
+      <Navbar />
       <main className="flex-1">
-        <PropertyLanding property={property} rooms={rooms} />
+        <section className="relative flex h-[92vh] min-h-[560px] w-full items-end">
+          <Image
+            src={brand.heroImage}
+            alt={brand.name}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/0" />
+          <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 text-white sm:pb-20">
+            <p className="animate-fade-in text-xs uppercase tracking-[0.3em] text-white/80">
+              Boutique Guest Houses in Bali
+            </p>
+            <h1 className="animate-fade-in-up mt-4 font-serif text-5xl leading-[1.05] sm:text-7xl">
+              {brand.name}
+            </h1>
+            <p className="animate-fade-in-up mt-4 max-w-md text-sm uppercase tracking-[0.2em] text-white/70">
+              {brand.tagline}
+            </p>
+          </div>
+
+          <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70">
+            <span className="text-[10px] uppercase tracking-[0.3em]">
+              Explore The Aluna
+            </span>
+            <span className="h-8 w-px animate-bounce bg-white/50" />
+          </div>
+        </section>
+
+        <Reveal>
+          <section className="mx-auto max-w-3xl px-6 py-24 text-center">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
+              About
+            </p>
+            <h2 className="mt-3 font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
+              A Collection of Slow Stays
+            </h2>
+            <p className="mt-6 text-stone-600">{brand.description}</p>
+          </section>
+        </Reveal>
+
+        {slides.length > 0 && (
+          <Reveal>
+            <section className="mx-auto max-w-6xl px-6 pb-24">
+              <FeatureCarousel slides={slides} />
+            </section>
+          </Reveal>
+        )}
+
+        <Reveal>
+          <section className="bg-stone-100 py-24">
+            <div className="mx-auto max-w-6xl px-6">
+              <div className="flex items-end justify-between">
+                <h2 className="font-serif text-3xl text-stone-900">
+                  Our Locations
+                </h2>
+                <Link
+                  href="/accommodations"
+                  className="text-sm font-medium text-stone-600 underline underline-offset-4 hover:text-stone-900"
+                >
+                  View all
+                </Link>
+              </div>
+
+              <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {properties.map((property, i) => (
+                  <Reveal key={property.id} delay={i * 100}>
+                    <Link
+                      href={`/properties/${property.slug}`}
+                      className="group block overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                    >
+                      <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                          src={property.cover_image}
+                          alt={property.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
+                          {property.location}
+                        </p>
+                        <h3 className="mt-2 font-serif text-xl text-stone-900">
+                          {property.name}
+                        </h3>
+                      </div>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="mx-auto max-w-2xl px-6 py-28 text-center">
+            <h2 className="font-serif text-3xl text-stone-900 sm:text-4xl">
+              Ready to plan your stay?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-stone-600">
+              Browse our locations and send a booking inquiry directly to the
+              property you have in mind.
+            </p>
+            <Link
+              href="/accommodations"
+              className="mt-8 inline-block rounded-full bg-stone-900 px-8 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              Browse Locations
+            </Link>
+          </section>
+        </Reveal>
       </main>
       <Footer />
     </>

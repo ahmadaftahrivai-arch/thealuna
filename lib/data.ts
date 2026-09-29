@@ -15,11 +15,6 @@ export async function getProperties(): Promise<Property[]> {
   return data ?? [];
 }
 
-export async function getPrimaryProperty(): Promise<Property | null> {
-  const properties = await getProperties();
-  return properties[0] ?? null;
-}
-
 export async function getPropertyBySlug(
   slug: string
 ): Promise<Property | null> {

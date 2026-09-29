@@ -14,7 +14,11 @@ export default async function PropertyLayout({
 
   return (
     <>
-      <Navbar propertyName={property.name} propertySlug={property.slug} />
+      <Navbar
+        variant="property"
+        propertyName={property.name}
+        propertySlug={property.slug}
+      />
       <main className="flex-1">{children}</main>
       <Footer />
     </>
