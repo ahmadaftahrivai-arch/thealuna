@@ -30,7 +30,7 @@ export function DiscoverSection({
   items: DiscoverItem[];
 }) {
   return (
-    <section className="bg-white px-4 py-16 lg:px-7 lg:py-24">
+    <section id="events" className="scroll-mt-20 bg-white px-4 py-16 lg:px-7 lg:py-24">
       <Reveal>
         <ParallaxBanner bannerImage={bannerImage} bannerLabel={bannerLabel} />
       </Reveal>

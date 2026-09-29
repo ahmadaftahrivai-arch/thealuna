@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
 
 type NavbarProps =
   | { variant?: "brand" }
@@ -12,82 +13,200 @@ export function Navbar(props: NavbarProps) {
   const isProperty = props.variant === "property";
   const base = isProperty ? `/properties/${props.propertySlug}` : "";
 
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 80);
+    let frame = 0;
+    function check() {
+      setScrolled((prev) => {
+        const next = window.scrollY > 10;
+        return prev === next ? prev : next;
+      });
     }
-    onScroll();
+    function onScroll() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(check);
+    }
+    check();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
+  const accommodationsAnchor = isProperty ? "rooms" : "locations";
   const links = [
-    { href: `${base}#about`, label: "About" },
-    {
-      href: `${base}#${isProperty ? "rooms" : "locations"}`,
-      label: "Accommodations",
-    },
-    { href: `${base}#gallery`, label: "Gallery" },
-    { href: `${base}#contact`, label: "Contact Us" },
+    { name: "About", href: `${base}#about` },
+    { name: "Events", href: `${base}#events` },
+    { name: "Accommodations", href: `${base}#${accommodationsAnchor}` },
+    { name: "Contact Us", href: `${base}#contact` },
+    { name: "Gallery", href: `${base}#gallery` },
   ];
 
   const brandLabel = isProperty ? props.propertyName : "The Aluna";
   const homeHref = isProperty ? base : "/";
+  const bookHref = `${base}#${accommodationsAnchor}`;
+
+  function closeMenu() {
+    setMenuOpen(false);
+  }
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-stone-200 bg-stone-50/90 backdrop-blur"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`fixed inset-x-0 top-0 z-50 flex w-full items-center justify-between px-6 transition-all duration-300 lg:px-12 ${
+          scrolled
+            ? "bg-white/95 py-3 shadow-sm backdrop-blur-md"
+            : "bg-transparent py-4"
+        }`}
+      >
         <Link
           href={homeHref}
-          className={`font-semibold text-xl tracking-tight transition-colors duration-300 ${
-            scrolled ? "text-[#3D2709]" : "text-white"
+          className={`shrink-0 font-semibold text-xl tracking-tight transition-colors duration-300 ${
+            scrolled ? "text-black" : "text-white"
           }`}
         >
           {brandLabel}
         </Link>
 
-        <nav
-          className={`hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.15em] transition-colors duration-300 md:flex ${
-            scrolled ? "text-stone-600" : "text-white/80"
-          }`}
-        >
+        <nav className="hidden items-center gap-8 md:flex lg:gap-12">
           {links.map((link) => (
-            <Link
-              key={link.label}
+            <a
+              key={link.name}
               href={link.href}
-              className={`transition-colors ${
+              className={`group relative text-sm font-medium uppercase tracking-wide transition-colors duration-300 ${
                 scrolled
-                  ? "hover:text-[#3D2709]"
-                  : "hover:text-white"
+                  ? "text-black hover:text-black/70"
+                  : "text-white hover:text-white/70"
               }`}
             >
-              {link.label}
-            </Link>
+              {link.name}
+              <span className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 transform bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </a>
           ))}
         </nav>
 
-        <Link
-          href={`${base}#contact`}
-          className={`rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 ${
+        <motion.a
+          href={bookHref}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`hidden rounded px-6 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors duration-300 md:block ${
             scrolled
-              ? "bg-[#3D2709] text-white hover:opacity-90"
-              : "border border-white/70 text-white hover:bg-white/10"
+              ? "bg-black text-white hover:bg-black/80"
+              : "bg-white text-black hover:bg-white/90"
           }`}
         >
           Book Now
-        </Link>
-      </div>
-    </motion.header>
+        </motion.a>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Menu"
+          className="relative z-[60] flex h-5 w-5 flex-col justify-center gap-1.5 md:hidden"
+        >
+          <span
+            className={`h-0.5 w-full transition-all duration-300 ${
+              menuOpen ? "translate-y-2 rotate-45" : ""
+            } ${scrolled || menuOpen ? "bg-black" : "bg-white"}`}
+          />
+          <span
+            className={`h-0.5 w-full transition-all duration-300 ${
+              menuOpen ? "opacity-0" : ""
+            } ${scrolled || menuOpen ? "bg-black" : "bg-white"}`}
+          />
+          <span
+            className={`h-0.5 w-full transition-all duration-300 ${
+              menuOpen ? "-translate-y-2 -rotate-45" : ""
+            } ${scrolled || menuOpen ? "bg-black" : "bg-white"}`}
+          />
+        </button>
+      </motion.header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+              onClick={closeMenu}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white shadow-2xl sm:w-80"
+            >
+              <div className="relative p-6">
+                <button
+                  type="button"
+                  onClick={closeMenu}
+                  aria-label="Close menu"
+                  className="absolute right-6 top-6 rounded-full p-2 transition-colors hover:bg-gray-100"
+                >
+                  <X className="h-6 w-6 text-black" />
+                </button>
+
+                <div className="mb-12 mt-8 font-semibold text-xl tracking-tight text-black">
+                  {brandLabel}
+                </div>
+
+                <nav className="flex flex-col gap-6">
+                  {links.map((link, i) => (
+                    <motion.a
+                      key={link.name}
+                      href={link.href}
+                      onClick={closeMenu}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className="text-2xl font-semibold text-black transition-colors hover:text-black/70"
+                    >
+                      {link.name}
+                    </motion.a>
+                  ))}
+                </nav>
+
+                <motion.a
+                  href={bookHref}
+                  onClick={closeMenu}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-12 block w-full rounded bg-black px-6 py-3 text-center text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-black/80"
+                >
+                  Book Now
+                </motion.a>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="mt-12 border-t border-gray-200 pt-6"
+                >
+                  <p className="mb-2 text-sm text-gray-600">Contact Us</p>
+                  <a
+                    href={`${base}#contact`}
+                    onClick={closeMenu}
+                    className="text-sm font-semibold text-black hover:text-black/70"
+                  >
+                    Send us your dates
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
