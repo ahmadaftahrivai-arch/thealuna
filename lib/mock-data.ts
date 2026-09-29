@@ -7,8 +7,8 @@ import type { Property, RoomType } from "./types";
 export const mockProperties: Property[] = [
   {
     id: "mock-the-aluna-bali",
-    slug: "the-aluna-bali",
-    name: "The Aluna",
+    slug: "the-aluna-canggu",
+    name: "The Aluna Canggu",
     location: "Canggu, Bali",
     tagline: "A Cozy Guest House",
     description:
@@ -88,6 +88,44 @@ export const mockProperties: Property[] = [
       },
     ],
   },
+  {
+    id: "mock-the-aluna-uluwatu",
+    slug: "the-aluna-uluwatu",
+    name: "The Aluna Uluwatu",
+    location: "Uluwatu, Bali",
+    tagline: "A Cliffside Retreat",
+    description:
+      "Perched above the limestone cliffs of Uluwatu, this Aluna trades rice terraces and beach breeze for open ocean and long horizons — sunrise coffee on the terrace, sunset from the infinity pool.",
+    cover_image:
+      "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1600&auto=format&fit=crop",
+    amenities: [
+      "Free Wi-Fi",
+      "Ocean View",
+      "Infinity Pool",
+      "Daily Housekeeping",
+      "Breakfast Included",
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.3",
+      "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.7",
+    ],
+    highlights: [
+      {
+        image:
+          "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1200&auto=format&fit=crop",
+        title: "A Cliffside Retreat",
+        description:
+          "Perched above the limestone cliffs of Uluwatu, this Aluna trades rice terraces and beach breeze for open ocean and long horizons — sunrise coffee on the terrace, sunset from the infinity pool.",
+      },
+      {
+        image:
+          "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.5",
+        title: "Where the Land Meets the Sea",
+        description:
+          "Every room looks out over the same endless water. Days move around the tide, the sunset, and the sound of waves against the cliff face far below.",
+      },
+    ],
+  },
 ];
 
 export const mockRoomTypes: RoomType[] = [
@@ -123,6 +161,17 @@ export const mockRoomTypes: RoomType[] = [
     capacity: 2,
     images: [
       "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.3",
+    ],
+  },
+  {
+    id: "mock-room-cliff",
+    property_id: "mock-the-aluna-uluwatu",
+    name: "Cliff View Suite",
+    description: "Floor-to-ceiling ocean views and a private terrace.",
+    price: 1450000,
+    capacity: 2,
+    images: [
+      "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.6",
     ],
   },
 ];

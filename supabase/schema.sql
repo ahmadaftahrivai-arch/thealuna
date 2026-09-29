@@ -72,8 +72,8 @@ create policy "Public insert access to inquiries"
 -- Sample seed data. Feel free to edit or remove before going live.
 insert into properties (slug, name, location, tagline, description, cover_image, amenities, gallery, highlights)
 values (
-  'the-aluna-bali',
-  'The Aluna',
+  'the-aluna-canggu',
+  'The Aluna Canggu',
   'Canggu, Bali',
   'A Cozy Guest House',
   'Where island calm meets everyday comfort. The Aluna is a boutique guest house built for those who travel slowly.',
@@ -107,11 +107,78 @@ on conflict (slug) do nothing;
 insert into room_types (property_id, name, description, price, capacity, images)
 select id, 'Deluxe Room', 'Soft linens, warm teak wood, and a private courtyard view.', 750000, 2,
   array['https://images.unsplash.com/photo-1611892440504-42a792e24d32']
-from properties where slug = 'the-aluna-bali'
+from properties where slug = 'the-aluna-canggu'
 on conflict do nothing;
 
 insert into room_types (property_id, name, description, price, capacity, images)
 select id, 'Family Suite', 'Extra space with a kitchenette, ideal for longer stays.', 1200000, 4,
   array['https://images.unsplash.com/photo-1618773928121-c32242e63f39']
-from properties where slug = 'the-aluna-bali'
+from properties where slug = 'the-aluna-canggu'
+on conflict do nothing;
+
+insert into properties (slug, name, location, tagline, description, cover_image, amenities, gallery, highlights)
+values (
+  'the-aluna-ubud',
+  'The Aluna Ubud',
+  'Ubud, Bali',
+  'Designed for Slow Living',
+  'Tucked among rice terraces, this second Aluna property trades beach breeze for jungle quiet — the same unhurried rhythm, a different backdrop.',
+  'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2',
+  array['Free Wi-Fi', 'Rice Field View', 'Daily Housekeeping', 'Yoga Deck', 'Breakfast Included'],
+  array[
+    'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2'
+  ],
+  '[
+    {
+      "image": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2",
+      "title": "Designed for Slow Living",
+      "description": "Tucked among rice terraces, this second Aluna property trades beach breeze for jungle quiet — the same unhurried rhythm, a different backdrop."
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?crop=focalpoint&fp-x=0.7",
+      "title": "Warm, Attentive Service",
+      "description": "Our hosts know the trails, the best warung, and exactly when the mist clears over the terraces. Expect honest recommendations and a homemade breakfast every morning."
+    }
+  ]'::jsonb
+)
+on conflict (slug) do nothing;
+
+insert into room_types (property_id, name, description, price, capacity, images)
+select id, 'Jungle View Room', 'Wake up to rice terraces and morning mist.', 900000, 2,
+  array['https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?crop=focalpoint&fp-x=0.3']
+from properties where slug = 'the-aluna-ubud'
+on conflict do nothing;
+
+insert into properties (slug, name, location, tagline, description, cover_image, amenities, gallery, highlights)
+values (
+  'the-aluna-uluwatu',
+  'The Aluna Uluwatu',
+  'Uluwatu, Bali',
+  'A Cliffside Retreat',
+  'Perched above the limestone cliffs of Uluwatu, this Aluna trades rice terraces and beach breeze for open ocean and long horizons — sunrise coffee on the terrace, sunset from the infinity pool.',
+  'https://images.unsplash.com/photo-1573790387438-4da905039392',
+  array['Free Wi-Fi', 'Ocean View', 'Infinity Pool', 'Daily Housekeeping', 'Breakfast Included'],
+  array[
+    'https://images.unsplash.com/photo-1573790387438-4da905039392?crop=focalpoint&fp-x=0.3',
+    'https://images.unsplash.com/photo-1573790387438-4da905039392?crop=focalpoint&fp-x=0.7'
+  ],
+  '[
+    {
+      "image": "https://images.unsplash.com/photo-1573790387438-4da905039392",
+      "title": "A Cliffside Retreat",
+      "description": "Perched above the limestone cliffs of Uluwatu, this Aluna trades rice terraces and beach breeze for open ocean and long horizons — sunrise coffee on the terrace, sunset from the infinity pool."
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1573790387438-4da905039392?crop=focalpoint&fp-x=0.5",
+      "title": "Where the Land Meets the Sea",
+      "description": "Every room looks out over the same endless water. Days move around the tide, the sunset, and the sound of waves against the cliff face far below."
+    }
+  ]'::jsonb
+)
+on conflict (slug) do nothing;
+
+insert into room_types (property_id, name, description, price, capacity, images)
+select id, 'Cliff View Suite', 'Floor-to-ceiling ocean views and a private terrace.', 1450000, 2,
+  array['https://images.unsplash.com/photo-1573790387438-4da905039392?crop=focalpoint&fp-x=0.6']
+from properties where slug = 'the-aluna-uluwatu'
 on conflict do nothing;
