@@ -60,9 +60,6 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
             >
               →
             </button>
-            <span className="ml-2 text-xs text-stone-400">
-              {index + 1} / {slides.length}
-            </span>
           </div>
         )}
       </div>
