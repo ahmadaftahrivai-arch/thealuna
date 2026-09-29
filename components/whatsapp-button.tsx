@@ -1,8 +1,8 @@
 import { MessageCircle } from "lucide-react";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { buildWhatsAppHref, inquiryMessage } from "@/lib/whatsapp";
 
 export function WhatsAppButton() {
-  const href = buildWhatsAppHref("Hi, I'd like to ask about a stay at The Aluna.");
+  const href = buildWhatsAppHref(inquiryMessage("The Aluna"));
 
   return (
     <a

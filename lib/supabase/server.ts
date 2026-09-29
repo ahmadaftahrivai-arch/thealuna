@@ -1,8 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { isSupabaseConfigured } from "./client";
 
-export { isSupabaseConfigured };
-
 export function getSupabaseServerClient(): SupabaseClient | null {
   if (!isSupabaseConfigured()) return null;
 

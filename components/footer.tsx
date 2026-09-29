@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
 import { Logo } from "@/components/logo";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { buildWhatsAppHref, inquiryMessage } from "@/lib/whatsapp";
 
 export async function Footer() {
   const properties = await getProperties();
@@ -52,9 +52,7 @@ export async function Footer() {
               </li>
               <li>
                 <a
-                  href={buildWhatsAppHref(
-                    `Hi, I'd like to ask about a stay at ${brand.name}.`
-                  )}
+                  href={buildWhatsAppHref(inquiryMessage(brand.name))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white transition-colors hover:text-white/70"

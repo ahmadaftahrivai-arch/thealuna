@@ -3,7 +3,7 @@ import { RoomCard } from "@/components/room-card";
 import { AmenitiesList } from "@/components/amenities-list";
 import { ScrollGallery } from "@/components/scroll-gallery";
 import { Reveal } from "@/components/reveal";
-import { HeroVideo } from "@/components/hero-video";
+import { Hero } from "@/components/hero";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { OffersCarousel } from "@/components/offers-carousel";
 import { DiscoverSection, buildDiscoverItems } from "@/components/discover-section";
@@ -24,29 +24,11 @@ export function PropertyLanding({
 
   return (
     <>
-      <section className="relative flex h-dvh min-h-[560px] w-full items-end">
-        <HeroVideo
-          src="/videos/hero.mp4"
-          poster="/videos/hero-poster.jpg"
-          alt={property.name}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#3D2709]/80 via-[#3D2709]/20 to-transparent" />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 text-white sm:pb-20">
-          <p className="animate-fade-in text-xs uppercase tracking-[0.3em] text-white/80">
-            {property.location}
-          </p>
-          <h1 className="animate-fade-in-up mt-4 font-semibold text-5xl leading-[1.05] sm:text-7xl">
-            {property.name}
-          </h1>
-          <p className="animate-fade-in-up mt-4 max-w-md text-sm uppercase tracking-[0.2em] text-white/70">
-            {property.tagline}
-          </p>
-        </div>
-
-        <div className="absolute bottom-6 left-1/2 z-10 animate-bounce text-white/70">
-          ↓
-        </div>
-      </section>
+      <Hero
+        eyebrow={property.location}
+        title={property.name}
+        tagline={property.tagline}
+      />
 
       {aboutSlides.length > 0 && (
         <Reveal>

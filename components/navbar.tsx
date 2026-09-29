@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { buildWhatsAppHref } from "@/lib/whatsapp";
+import { bookingMessage, buildWhatsAppHref } from "@/lib/whatsapp";
 
 type NavbarProps =
   | { variant?: "brand" }
@@ -49,9 +49,7 @@ export function Navbar(props: NavbarProps) {
 
   const brandLabel = isProperty ? props.propertyName : "The Aluna";
   const homeHref = isProperty ? base : "/";
-  const whatsappHref = buildWhatsAppHref(
-    `Hi, I'd like to book a stay at ${brandLabel}.`
-  );
+  const whatsappHref = buildWhatsAppHref(bookingMessage(brandLabel));
 
   function closeMenu() {
     setMenuOpen(false);
