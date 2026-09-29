@@ -61,7 +61,7 @@ export function PropertyLanding({
         <Reveal>
           <section id="rooms" className="mx-auto max-w-6xl scroll-mt-20 px-6 pb-24">
             <h2 className="font-semibold text-3xl text-[#3D2709]">Rooms</h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(240px,340px))] justify-start gap-6">
               {rooms.map((room, i) => (
                 <Reveal key={room.id} delay={i * 100}>
                   <RoomCard room={room} />
