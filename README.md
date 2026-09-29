@@ -1,12 +1,41 @@
-## The Aluna — Hotel Booking Website
+## The Aluna — Boutique Guest House Booking Site
 
-Multi-property boutique guest house site. Guests browse properties, view
-rooms, and reach out to book via WhatsApp — no online payment or inline
-inquiry form, bookings are followed up manually over chat.
+A multi-property hotel booking site for a fictional Bali guest house brand,
+built to closely match a real reference site's structure, motion design, and
+visual language — then adapted to its own data model, content, and booking
+flow (WhatsApp instead of a payment gateway).
 
-- **Framework**: Next.js (App Router) + TypeScript + Tailwind CSS
-- **Hosting**: Vercel
-- **Database**: Supabase (Postgres), optional for local dev
+**Stack**: Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 ·
+Framer Motion · Supabase (optional) · deployed on Vercel
+
+### Screenshots
+
+| Desktop hero | Mobile hero | Mobile menu |
+| --- | --- | --- |
+| ![Hero section with video background](docs/screenshots/hero.jpg) | ![Mobile hero](docs/screenshots/mobile-hero.jpg) | ![Mobile navigation menu](docs/screenshots/mobile-menu.png) |
+
+![Footer with property list and navigation](docs/screenshots/footer.png)
+
+### Highlights
+
+- **Video hero with scroll parallax** — autoplaying background video (muted,
+  looped, `prefers-reduced-motion`-aware fallback to a static poster), with
+  a scroll-linked drift built on Framer Motion's `useScroll`/`useTransform`.
+- **Scroll-scrubbed gallery** — a horizontal image grid whose active "word"
+  (Stay / Explore / Enjoy) and image set are driven by scroll position
+  rather than a click-through carousel.
+- **Multi-property architecture** — one brand-level homepage plus a
+  per-property page (`/properties/[slug]`) generated from the same
+  components, each with its own hero, room list, amenities, and gallery.
+- **Optional backend** — the whole app runs on typed mock data
+  (`lib/mock-data.ts`) with zero setup; wiring up Supabase env vars switches
+  every page to live data with no code changes (see `lib/data.ts`).
+- **WhatsApp-first booking** — every "Book Now" / "Contact Us" CTA opens a
+  pre-filled `wa.me` chat naming the specific property, rather than a form
+  (see `lib/whatsapp.ts`).
+- **Animated navbar** — transparent over the hero, slides to a solid header
+  with a color-swapped logo on scroll; a full slide-in mobile menu with
+  staggered link entrance.
 
 ### Project structure
 
@@ -22,17 +51,19 @@ app/
     layout.tsx                      Fetches the property, renders its navbar/footer
     page.tsx                        Renders <PropertyLanding>
 components/
+  hero.tsx                          Shared hero (video + eyebrow/title/tagline), used by
+                                     both the homepage and property pages
   property-landing.tsx              A property's full page: hero, #about, room
                                      carousel, #rooms, amenities, #gallery
-  navbar.tsx, footer.tsx, reveal.tsx (scroll-in animation),
-  feature-carousel.tsx, room-card.tsx, amenities-list.tsx,
+  navbar.tsx, footer.tsx, logo.tsx, reveal.tsx (scroll-in animation),
+  feature-carousel.tsx, scroll-gallery.tsx, room-card.tsx, amenities-list.tsx,
   whatsapp-button.tsx               Floating "chat on WhatsApp" button
 lib/
   brand.ts                          Brand-level copy (name, tagline, hero image) for "/"
   data.ts                           Data access layer (Supabase, falls back to mock data)
   mock-data.ts                      Sample property/room data for local dev
   whatsapp.ts                       Builds wa.me links for every "Book Now" CTA
-  supabase/                         Supabase client factories
+  supabase/                         Supabase client factory
 supabase/schema.sql                 Table definitions, RLS policies, and seed data
 ```
 
@@ -92,6 +123,7 @@ rather than submitting a form. Swap the placeholder `WHATSAPP_NUMBER` in
 
 ### Not built yet (out of scope for this pass)
 
-- Admin dashboard (managing properties/rooms/inquiries is done via Supabase directly)
-- Real-time room availability and online payment — booking is inquiry-only
+- Admin dashboard (managing properties/rooms is done via Supabase directly)
+- Real-time room availability and online payment — booking is a WhatsApp
+  handoff, followed up manually
 - Authentication for guests or staff
