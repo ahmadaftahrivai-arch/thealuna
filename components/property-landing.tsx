@@ -6,6 +6,7 @@ import { ScrollGallery } from "@/components/scroll-gallery";
 import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal } from "@/components/reveal";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
+import { OffersCarousel } from "@/components/offers-carousel";
 
 export function PropertyLanding({
   property,
@@ -83,6 +84,10 @@ export function PropertyLanding({
           </div>
         </section>
       </Reveal>
+
+      <section className="bg-[#2a1e14] py-16">
+        <OffersCarousel />
+      </section>
 
       <section id="gallery" className="scroll-mt-20">
         <ScrollGallery images={[property.cover_image, ...property.gallery]} />

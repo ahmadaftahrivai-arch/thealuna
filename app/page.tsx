@@ -6,6 +6,7 @@ import { Reveal } from "@/components/reveal";
 import { ScrollGallery } from "@/components/scroll-gallery";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { BranchesCarousel } from "@/components/branches-carousel";
+import { OffersCarousel } from "@/components/offers-carousel";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
 
@@ -62,6 +63,10 @@ export default async function HomePage() {
             </section>
           </Reveal>
         )}
+
+        <section className="bg-[#2a1e14] py-16">
+          <OffersCarousel />
+        </section>
 
         <section id="locations" className="scroll-mt-20 bg-[#2a1e14] py-24">
           <BranchesCarousel properties={properties} />
