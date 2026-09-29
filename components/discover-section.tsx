@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
+import { ParallaxBanner } from "@/components/parallax-banner";
 
 export type DiscoverItem = {
   label: string;
@@ -31,18 +32,7 @@ export function DiscoverSection({
   return (
     <section className="bg-white px-4 py-16 lg:px-7 lg:py-24">
       <Reveal>
-        <div className="relative min-h-[40vh] overflow-hidden rounded-2xl lg:min-h-[50vh]">
-          <Image
-            src={bannerImage}
-            alt={bannerLabel}
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute left-0 top-0 bg-white py-2 pb-2 pl-2 pr-3 text-center text-lg font-semibold text-[#221604] lg:py-5 lg:pb-5 lg:pl-4 lg:pr-5 lg:text-start lg:text-5xl">
-            {bannerLabel}
-          </div>
-        </div>
+        <ParallaxBanner bannerImage={bannerImage} bannerLabel={bannerLabel} />
       </Reveal>
 
       {items.length > 0 && (
