@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Property, RoomType } from "@/lib/types";
 import { RoomCard } from "@/components/room-card";
 import { AmenitiesList } from "@/components/amenities-list";
+import { GalleryGrid } from "@/components/gallery-grid";
+import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal } from "@/components/reveal";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 
@@ -13,8 +14,6 @@ export function PropertyLanding({
   property: Property;
   rooms: RoomType[];
 }) {
-  const basePath = `/properties/${property.slug}`;
-
   const carouselSlides: CarouselSlide[] = rooms.map((room) => ({
     image: room.images[0],
     eyebrow: "Designed for Slow Living",
@@ -55,7 +54,7 @@ export function PropertyLanding({
       </section>
 
       <Reveal>
-        <section className="mx-auto max-w-6xl px-6 py-24">
+        <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
           <div className="grid gap-10 sm:grid-cols-[1fr_2fr] sm:gap-16">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
               {property.name}
@@ -82,18 +81,10 @@ export function PropertyLanding({
 
       {rooms.length > 0 && (
         <Reveal>
-          <section className="mx-auto max-w-6xl px-6 pb-24">
-            <div className="flex items-end justify-between">
-              <h2 className="font-serif text-3xl text-stone-900">Rooms</h2>
-              <Link
-                href={`${basePath}/accommodations`}
-                className="text-sm font-medium text-stone-600 underline underline-offset-4 hover:text-stone-900"
-              >
-                View all
-              </Link>
-            </div>
+          <section id="rooms" className="mx-auto max-w-6xl scroll-mt-20 px-6 pb-24">
+            <h2 className="font-serif text-3xl text-stone-900">Rooms</h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {rooms.slice(0, 3).map((room, i) => (
+              {rooms.map((room, i) => (
                 <Reveal key={room.id} delay={i * 100}>
                   <RoomCard room={room} />
                 </Reveal>
@@ -115,20 +106,31 @@ export function PropertyLanding({
       </Reveal>
 
       <Reveal>
-        <section className="mx-auto max-w-2xl px-6 py-28 text-center">
-          <h2 className="font-serif text-3xl text-stone-900 sm:text-4xl">
-            Ready to book your stay?
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-stone-600">
-            Send us your dates and we&apos;ll get back to you to confirm
-            availability.
-          </p>
-          <Link
-            href={`${basePath}/contact`}
-            className="mt-8 inline-block rounded-full bg-stone-900 px-8 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
-          >
-            Send a Booking Inquiry
-          </Link>
+        <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+          <h2 className="font-serif text-3xl text-stone-900">Gallery</h2>
+          <div className="mt-8">
+            <GalleryGrid images={[property.cover_image, ...property.gallery]} />
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section
+          id="contact"
+          className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28"
+        >
+          <div className="text-center">
+            <h2 className="font-serif text-3xl text-stone-900 sm:text-4xl">
+              Ready to book your stay?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-stone-600">
+              Send us your dates and we&apos;ll get back to you to confirm
+              availability.
+            </p>
+          </div>
+          <div className="mt-10">
+            <InquiryForm propertyId={property.id} rooms={rooms} />
+          </div>
         </section>
       </Reveal>
     </>

@@ -6,37 +6,26 @@ type NavbarProps =
 
 export function Navbar(props: NavbarProps) {
   const isProperty = props.variant === "property";
+  const base = isProperty ? `/properties/${props.propertySlug}` : "";
 
-  const links = isProperty
-    ? [
-        { href: `/properties/${props.propertySlug}`, label: "About" },
-        {
-          href: `/properties/${props.propertySlug}/accommodations`,
-          label: "Accommodations",
-        },
-        { href: `/properties/${props.propertySlug}/gallery`, label: "Gallery" },
-        {
-          href: `/properties/${props.propertySlug}/contact`,
-          label: "Contact Us",
-        },
-      ]
-    : [
-        { href: "/", label: "About" },
-        { href: "/accommodations", label: "Accommodations" },
-        { href: "/gallery", label: "Gallery" },
-        { href: "/accommodations", label: "Contact Us" },
-      ];
+  const links = [
+    { href: `${base}#about`, label: "About" },
+    {
+      href: `${base}#${isProperty ? "rooms" : "locations"}`,
+      label: "Accommodations",
+    },
+    { href: `${base}#gallery`, label: "Gallery" },
+    { href: `${base}#contact`, label: "Contact Us" },
+  ];
 
   const brandLabel = isProperty ? props.propertyName : "The Aluna";
-  const bookNowHref = isProperty
-    ? `/properties/${props.propertySlug}/contact`
-    : "/accommodations";
+  const homeHref = isProperty ? base : "/";
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
-          href="/"
+          href={homeHref}
           className="font-serif text-xl tracking-wide text-stone-900"
         >
           {brandLabel}
@@ -55,7 +44,7 @@ export function Navbar(props: NavbarProps) {
         </nav>
 
         <Link
-          href={bookNowHref}
+          href={`${base}#contact`}
           className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
           Book Now

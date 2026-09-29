@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
+import { GalleryGrid } from "@/components/gallery-grid";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
@@ -16,6 +17,11 @@ export default async function HomePage() {
     title: property.name,
     description: property.tagline,
   }));
+
+  const galleryImages = properties.flatMap((property) => [
+    property.cover_image,
+    ...property.gallery,
+  ]);
 
   return (
     <>
@@ -52,7 +58,7 @@ export default async function HomePage() {
         </section>
 
         <Reveal>
-          <section className="mx-auto max-w-3xl px-6 py-24 text-center">
+          <section id="about" className="mx-auto max-w-3xl scroll-mt-20 px-6 py-24 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
               About
             </p>
@@ -72,19 +78,11 @@ export default async function HomePage() {
         )}
 
         <Reveal>
-          <section className="bg-stone-100 py-24">
+          <section id="locations" className="scroll-mt-20 bg-stone-100 py-24">
             <div className="mx-auto max-w-6xl px-6">
-              <div className="flex items-end justify-between">
-                <h2 className="font-serif text-3xl text-stone-900">
-                  Our Locations
-                </h2>
-                <Link
-                  href="/accommodations"
-                  className="text-sm font-medium text-stone-600 underline underline-offset-4 hover:text-stone-900"
-                >
-                  View all
-                </Link>
-              </div>
+              <h2 className="font-serif text-3xl text-stone-900">
+                Our Locations
+              </h2>
 
               <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {properties.map((property, i) => (
@@ -119,16 +117,25 @@ export default async function HomePage() {
         </Reveal>
 
         <Reveal>
-          <section className="mx-auto max-w-2xl px-6 py-28 text-center">
+          <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+            <h2 className="font-serif text-3xl text-stone-900">Gallery</h2>
+            <div className="mt-8">
+              <GalleryGrid images={galleryImages} />
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section id="contact" className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28 text-center">
             <h2 className="font-serif text-3xl text-stone-900 sm:text-4xl">
               Ready to plan your stay?
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-stone-600">
-              Browse our locations and send a booking inquiry directly to the
-              property you have in mind.
+              Pick a location above and send a booking inquiry directly to
+              that property.
             </p>
             <Link
-              href="/accommodations"
+              href="#locations"
               className="mt-8 inline-block rounded-full bg-stone-900 px-8 py-3.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
               Browse Locations
