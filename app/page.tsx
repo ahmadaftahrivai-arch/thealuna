@@ -49,16 +49,13 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70">
-            <span className="text-[10px] uppercase tracking-[0.3em]">
-              Explore The Aluna
-            </span>
-            <span className="h-8 w-px animate-bounce bg-white/50" />
+          <div className="absolute bottom-6 left-1/2 z-10 animate-bounce text-white/70">
+            ↓
           </div>
         </section>
 
         <Reveal>
-          <section id="about" className="mx-auto max-w-3xl scroll-mt-20 px-6 py-24 text-center">
+          <section id="about" className="mx-auto max-w-3xl scroll-mt-20 px-6 pt-24 text-center">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
               About
             </p>
@@ -71,7 +68,7 @@ export default async function HomePage() {
 
         {slides.length > 0 && (
           <Reveal>
-            <section className="mx-auto max-w-6xl px-6 pb-24">
+            <section className="mx-auto max-w-6xl px-6 py-24">
               <FeatureCarousel slides={slides} />
             </section>
           </Reveal>

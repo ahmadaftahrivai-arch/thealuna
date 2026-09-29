@@ -14,11 +14,11 @@ export function PropertyLanding({
   property: Property;
   rooms: RoomType[];
 }) {
-  const carouselSlides: CarouselSlide[] = rooms.map((room) => ({
-    image: room.images[0],
-    eyebrow: "Designed for Slow Living",
-    title: room.name,
-    description: room.description,
+  const aboutSlides: CarouselSlide[] = property.highlights.map((h) => ({
+    image: h.image,
+    eyebrow: property.name,
+    title: h.title,
+    description: h.description,
   }));
 
   return (
@@ -45,36 +45,15 @@ export function PropertyLanding({
           </p>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70">
-          <span className="text-[10px] uppercase tracking-[0.3em]">
-            Scroll
-          </span>
-          <span className="h-8 w-px animate-bounce bg-white/50" />
+        <div className="absolute bottom-6 left-1/2 z-10 animate-bounce text-white/70">
+          ↓
         </div>
       </section>
 
-      <Reveal>
-        <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
-          <div className="grid gap-10 sm:grid-cols-[1fr_2fr] sm:gap-16">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-              {property.name}
-            </p>
-            <div>
-              <h2 className="font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
-                {property.tagline}
-              </h2>
-              <p className="mt-6 max-w-2xl text-stone-600">
-                {property.description}
-              </p>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {carouselSlides.length > 0 && (
+      {aboutSlides.length > 0 && (
         <Reveal>
-          <section className="mx-auto max-w-6xl px-6 pb-24">
-            <FeatureCarousel slides={carouselSlides} />
+          <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+            <FeatureCarousel slides={aboutSlides} />
           </section>
         </Reveal>
       )}

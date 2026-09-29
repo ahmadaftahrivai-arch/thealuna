@@ -27,6 +27,29 @@ export const mockProperties: Property[] = [
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1200&auto=format&fit=crop",
     ],
+    highlights: [
+      {
+        image:
+          "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1200&auto=format&fit=crop",
+        title: "A Cozy Guest House",
+        description:
+          "Where island calm meets everyday comfort. The Aluna is a boutique guest house built for those who travel slowly — sunlit rooms, a quiet courtyard, and spaces that feel like they've always been yours.",
+      },
+      {
+        image:
+          "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200&auto=format&fit=crop",
+        title: "Designed for Slow Living",
+        description:
+          "Soft linens, warm teak wood, and locally crafted décor shape spaces made for unwinding at your own pace. Private corners invite quiet reflection, while open courtyards become the gentle backdrop between your Bali adventures.",
+      },
+      {
+        image:
+          "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1200&auto=format&fit=crop",
+        title: "Warm, Attentive Service",
+        description:
+          "From the moment you arrive, our hosts treat you like family — not just a room number. Expect a warm welcome, freshly brewed coffee at dawn, and honest recommendations for the Bali only locals know.",
+      },
+    ],
   },
   {
     id: "mock-the-aluna-ubud",
@@ -48,6 +71,22 @@ export const mockProperties: Property[] = [
     gallery: [
       "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
+    ],
+    highlights: [
+      {
+        image:
+          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop",
+        title: "Designed for Slow Living",
+        description:
+          "Tucked among rice terraces, this second Aluna property trades beach breeze for jungle quiet — the same unhurried rhythm, a different backdrop.",
+      },
+      {
+        image:
+          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
+        title: "Warm, Attentive Service",
+        description:
+          "Our hosts know the trails, the best warung, and exactly when the mist clears over the terraces. Expect honest recommendations and a homemade breakfast every morning.",
+      },
     ],
   },
 ];

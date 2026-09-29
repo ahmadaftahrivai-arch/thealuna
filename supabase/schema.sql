@@ -13,6 +13,10 @@ create table if not exists properties (
   cover_image text not null default '',
   amenities text[] not null default '{}',
   gallery text[] not null default '{}',
+  -- Array of {image, title, description} objects, shown as the #about
+  -- carousel on the property's page (mirrors the reference site's About
+  -- section, which cycles through a few narrative slides, not just one).
+  highlights jsonb not null default '[]',
   created_at timestamptz not null default now()
 );
 
@@ -66,7 +70,7 @@ create policy "Public insert access to inquiries"
   with check (true);
 
 -- Sample seed data. Feel free to edit or remove before going live.
-insert into properties (slug, name, location, tagline, description, cover_image, amenities, gallery)
+insert into properties (slug, name, location, tagline, description, cover_image, amenities, gallery, highlights)
 values (
   'the-aluna-bali',
   'The Aluna',
@@ -79,7 +83,24 @@ values (
     'https://images.unsplash.com/photo-1566665797739-1674de7a421a',
     'https://images.unsplash.com/photo-1582719508461-905c673771fd',
     'https://images.unsplash.com/photo-1584132967334-10e028bd69f7'
-  ]
+  ],
+  '[
+    {
+      "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
+      "title": "A Cozy Guest House",
+      "description": "Where island calm meets everyday comfort. The Aluna is a boutique guest house built for those who travel slowly — sunlit rooms, a quiet courtyard, and spaces that feel like they have always been yours."
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1582719508461-905c673771fd",
+      "title": "Designed for Slow Living",
+      "description": "Soft linens, warm teak wood, and locally crafted decor shape spaces made for unwinding at your own pace."
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
+      "title": "Warm, Attentive Service",
+      "description": "From the moment you arrive, our hosts treat you like family, with honest recommendations for the Bali only locals know."
+    }
+  ]'::jsonb
 )
 on conflict (slug) do nothing;
 

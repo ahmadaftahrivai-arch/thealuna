@@ -1,3 +1,9 @@
+export type PropertyHighlight = {
+  image: string;
+  title: string;
+  description: string;
+};
+
 export type Property = {
   id: string;
   slug: string;
@@ -8,6 +14,7 @@ export type Property = {
   cover_image: string;
   amenities: string[];
   gallery: string[];
+  highlights: PropertyHighlight[];
 };
 
 export type RoomType = {
