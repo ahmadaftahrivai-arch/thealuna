@@ -7,6 +7,7 @@ import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal } from "@/components/reveal";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { OffersCarousel } from "@/components/offers-carousel";
+import { DiscoverSection, buildDiscoverItems } from "@/components/discover-section";
 
 export function PropertyLanding({
   property,
@@ -85,13 +86,23 @@ export function PropertyLanding({
         </section>
       </Reveal>
 
-      <section className="bg-[#2a1e14] py-16">
-        <OffersCarousel />
-      </section>
-
       <section id="gallery" className="scroll-mt-20">
         <ScrollGallery images={[property.cover_image, ...property.gallery]} />
       </section>
+
+      <section className="bg-gradient-to-b from-[#3D2709] to-[#211503] py-16">
+        <OffersCarousel />
+      </section>
+
+      <DiscoverSection
+        heading={`Discover ${property.name}`}
+        bannerImage={property.cover_image}
+        bannerLabel="Crafting Home for Everyone"
+        items={buildDiscoverItems(property.amenities, [
+          property.cover_image,
+          ...property.gallery,
+        ])}
+      />
 
       <Reveal>
         <section

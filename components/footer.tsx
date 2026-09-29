@@ -1,8 +1,67 @@
-export function Footer() {
+import Link from "next/link";
+import { getProperties } from "@/lib/data";
+import { brand } from "@/lib/brand";
+
+export async function Footer() {
+  const properties = await getProperties();
+
   return (
-    <footer className="mt-auto border-t border-stone-200 bg-stone-100">
-      <div className="mx-auto max-w-6xl px-6 py-10 text-sm text-stone-500">
-        <p>&copy; {new Date().getFullYear()} The Aluna. All rights reserved.</p>
+    <footer className="bg-gradient-to-b from-[#3D2709] to-[#211503] text-white">
+      <div className="mx-auto max-w-6xl px-6 pt-12 pb-8 lg:pt-16">
+        <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:gap-12">
+          <div className="w-full lg:w-1/2">
+            <p className="font-semibold text-xl">{brand.name}</p>
+            <p className="mt-2 max-w-md text-sm text-white/70">
+              {brand.tagline}
+            </p>
+
+            <div className="mt-6 space-y-4">
+              {properties.map((property) => (
+                <p key={property.id} className="text-sm leading-relaxed text-white/70">
+                  <span className="text-xs uppercase tracking-wider text-white/50">
+                    {property.name}
+                  </span>
+                  <br />
+                  {property.location}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full lg:w-1/4">
+            <h3 className="mb-6 text-xs font-semibold uppercase tracking-widest text-white/50">
+              Navigate
+            </h3>
+            <ul className="space-y-4">
+              <li>
+                <Link href="/#about" className="text-white transition-colors hover:text-white/70">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/#locations" className="text-white transition-colors hover:text-white/70">
+                  Accommodations
+                </Link>
+              </li>
+              <li>
+                <Link href="/#gallery" className="text-white transition-colors hover:text-white/70">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link href="/#contact" className="text-white transition-colors hover:text-white/70">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mb-6 border-t border-white/10" />
+
+        <p className="text-center text-sm text-white/50">
+          &copy; {brand.name} {new Date().getFullYear()}. All rights reserved.
+        </p>
       </div>
     </footer>
   );

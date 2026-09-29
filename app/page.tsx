@@ -7,6 +7,7 @@ import { ScrollGallery } from "@/components/scroll-gallery";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { BranchesCarousel } from "@/components/branches-carousel";
 import { OffersCarousel } from "@/components/offers-carousel";
+import { DiscoverSection, buildDiscoverItems } from "@/components/discover-section";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
 
@@ -24,6 +25,11 @@ export default async function HomePage() {
     property.cover_image,
     ...property.gallery,
   ]);
+
+  const discoverLabels = Array.from(
+    new Set(properties.flatMap((property) => property.amenities))
+  ).slice(0, 6);
+  const discoverItems = buildDiscoverItems(discoverLabels, galleryImages);
 
   return (
     <>
@@ -64,17 +70,26 @@ export default async function HomePage() {
           </Reveal>
         )}
 
-        <section className="bg-[#2a1e14] py-16">
-          <OffersCarousel />
-        </section>
-
-        <section id="locations" className="scroll-mt-20 bg-[#2a1e14] py-24">
+        <section id="locations" className="scroll-mt-20 bg-gradient-to-b from-[#3D2709] to-[#211503] py-24">
           <BranchesCarousel properties={properties} />
         </section>
 
         <section id="gallery" className="scroll-mt-20">
           <ScrollGallery images={galleryImages} />
         </section>
+
+        <section className="bg-gradient-to-b from-[#3D2709] to-[#211503] py-16">
+          <OffersCarousel />
+        </section>
+
+        {discoverItems.length > 0 && (
+          <DiscoverSection
+            heading={`Discover ${brand.name}`}
+            bannerImage={brand.heroImage}
+            bannerLabel="Crafting Home for Everyone"
+            items={discoverItems}
+          />
+        )}
 
         <Reveal>
           <section id="contact" className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28 text-center">
