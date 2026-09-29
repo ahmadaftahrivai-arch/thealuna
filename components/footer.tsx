@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
+import { Logo } from "@/components/logo";
 
 export async function Footer() {
   const properties = await getProperties();
@@ -10,7 +11,7 @@ export async function Footer() {
       <div className="mx-auto max-w-6xl px-6 pt-12 pb-8 lg:pt-16">
         <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:gap-12">
           <div className="w-full lg:w-1/2">
-            <p className="font-semibold text-xl">{brand.name}</p>
+            <Logo label={brand.name} />
             <p className="mt-2 max-w-md text-sm text-white/70">
               {brand.tagline}
             </p>

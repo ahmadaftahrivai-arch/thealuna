@@ -2,6 +2,7 @@
 
 @theme inline {
   --font-sans: var(--font-jakarta);
+  --font-serif: var(--font-playfair);
 }
 
 @keyframes fade-in {

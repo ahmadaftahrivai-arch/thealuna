@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { Logo } from "@/components/logo";
 
 type NavbarProps =
   | { variant?: "brand" }
@@ -67,11 +68,11 @@ export function Navbar(props: NavbarProps) {
       >
         <Link
           href={homeHref}
-          className={`shrink-0 font-semibold text-xl tracking-tight transition-colors duration-300 ${
+          className={`shrink-0 transition-colors duration-300 ${
             scrolled ? "text-black" : "text-white"
           }`}
         >
-          {brandLabel}
+          <Logo label={brandLabel} />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex lg:gap-12">
@@ -156,8 +157,8 @@ export function Navbar(props: NavbarProps) {
                   <X className="h-6 w-6 text-black" />
                 </button>
 
-                <div className="mb-12 mt-8 font-semibold text-xl tracking-tight text-black">
-                  {brandLabel}
+                <div className="mb-12 mt-8 text-black">
+                  <Logo label={brandLabel} />
                 </div>
 
                 <nav className="flex flex-col gap-6">
