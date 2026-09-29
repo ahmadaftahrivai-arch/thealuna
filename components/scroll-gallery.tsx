@@ -27,10 +27,10 @@ function buildGroups(images: string[]): WordGroup[] {
 
 const imgClass = "absolute inset-0 h-full w-full object-cover";
 const wordClass = (active: boolean) =>
-  `inline-block origin-left whitespace-nowrap text-4xl font-bold leading-none tracking-tight transition-all duration-500 ease-out sm:text-5xl ${
+  `inline-block origin-left whitespace-nowrap text-4xl font-semibold leading-none tracking-tight transition-all duration-500 ease-out sm:text-5xl ${
     active
-      ? "text-stone-900 opacity-100 blur-none"
-      : "text-stone-900/70 opacity-80 blur-sm"
+      ? "text-[#3D2709] opacity-100 blur-none"
+      : "text-[#3D2709]/70 opacity-80 blur-sm"
   }`;
 
 export function ScrollGallery({ images }: { images: string[] }) {

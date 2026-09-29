@@ -120,7 +120,7 @@ export function InquiryForm({ propertyId, rooms }: InquiryFormProps) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-stone-900 px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
+        className="w-full rounded-full bg-[#3D2709] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
       >
         {status === "submitting" ? "Sending..." : "Send Inquiry"}
       </button>

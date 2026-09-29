@@ -54,7 +54,7 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="mt-3 font-bold text-3xl leading-tight text-stone-900 sm:text-4xl"
+          className="mt-3 font-semibold text-3xl leading-tight text-[#3D2709] sm:text-4xl"
         >
           {slide.title}
         </motion.h2>
@@ -77,7 +77,7 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
               transition={{ duration: 0.2 }}
               aria-label="Previous"
               onClick={() => go("prev")}
-              className="rounded-full p-2 text-xl text-stone-900 transition-colors hover:bg-stone-100"
+              className="rounded-full p-2 text-xl text-[#3D2709] transition-colors hover:bg-stone-100"
             >
               ←
             </motion.button>
@@ -88,7 +88,7 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
               transition={{ duration: 0.2 }}
               aria-label="Next"
               onClick={() => go("next")}
-              className="rounded-full p-2 text-xl text-stone-900 transition-colors hover:bg-stone-100"
+              className="rounded-full p-2 text-xl text-[#3D2709] transition-colors hover:bg-stone-100"
             >
               →
             </motion.button>

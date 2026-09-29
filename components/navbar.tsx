@@ -26,7 +26,7 @@ export function Navbar(props: NavbarProps) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href={homeHref}
-          className="font-serif text-xl tracking-wide text-stone-900"
+          className="font-semibold text-xl tracking-tight text-[#3D2709]"
         >
           {brandLabel}
         </Link>
@@ -36,7 +36,7 @@ export function Navbar(props: NavbarProps) {
             <Link
               key={link.label}
               href={link.href}
-              className="transition-colors hover:text-stone-950"
+              className="transition-colors hover:text-[#3D2709]"
             >
               {link.label}
             </Link>
@@ -45,7 +45,7 @@ export function Navbar(props: NavbarProps) {
 
         <Link
           href={`${base}#contact`}
-          className="rounded-full bg-stone-900 px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          className="rounded-full bg-[#3D2709] px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
           Book Now
         </Link>

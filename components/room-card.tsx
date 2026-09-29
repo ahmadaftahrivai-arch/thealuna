@@ -20,13 +20,13 @@ export function RoomCard({ room }: { room: RoomType }) {
         />
       </div>
       <div className="p-6">
-        <h3 className="font-bold text-lg text-stone-900">{room.name}</h3>
+        <h3 className="font-semibold text-lg text-[#3D2709]">{room.name}</h3>
         <p className="mt-2 text-sm text-stone-600">{room.description}</p>
         <div className="mt-4 flex items-center justify-between">
           <span className="text-sm text-stone-500">
             Up to {room.capacity} guests
           </span>
-          <span className="font-medium text-stone-900">
+          <span className="font-medium text-[#3D2709]">
             {currencyFormatter.format(room.price)}
             <span className="text-sm font-normal text-stone-500">
               /night
