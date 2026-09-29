@@ -11,7 +11,7 @@ export async function Footer() {
       <div className="mx-auto max-w-6xl px-6 pt-12 pb-8 lg:pt-16">
         <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:gap-12">
           <div className="w-full lg:w-1/2">
-            <Logo label={brand.name} />
+            <Logo label={brand.name} variant="white" />
             <p className="mt-2 max-w-md text-sm text-white/70">
               {brand.tagline}
             </p>

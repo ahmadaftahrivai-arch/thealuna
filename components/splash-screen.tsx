@@ -24,9 +24,8 @@ export function SplashScreen() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="text-white"
           >
-            <Logo label="The Aluna" size="lg" />
+            <Logo label="The Aluna" size="lg" variant="white" />
           </motion.div>
         </motion.div>
       )}

@@ -1,28 +1,42 @@
+import Image from "next/image";
+
+const ICON_RATIO = 461 / 420;
+
 const sizes = {
-  sm: { icon: "h-8 w-8 text-base", text: "text-xl", gap: "gap-2.5" },
-  lg: { icon: "h-14 w-14 text-2xl", text: "text-4xl", gap: "gap-4" },
+  sm: { iconHeight: 32, text: "text-xl", gap: "gap-2.5" },
+  lg: { iconHeight: 64, text: "text-4xl", gap: "gap-4" },
 } as const;
 
 export function Logo({
   label,
   size = "sm",
+  variant = "brown",
   className = "",
 }: {
   label: string;
   size?: keyof typeof sizes;
+  variant?: "brown" | "white";
   className?: string;
 }) {
   const s = sizes[size];
+  const iconSrc =
+    variant === "white"
+      ? "/images/logo-mark-white.png"
+      : "/images/logo-mark.png";
+  const textColor = variant === "white" ? "text-white" : "text-[#735E4A]";
 
   return (
     <span className={`inline-flex items-center ${s.gap} ${className}`}>
-      <span
-        aria-hidden="true"
-        className={`flex shrink-0 items-center justify-center rounded-[4px] border border-current font-serif ${s.icon}`}
-      >
-        A
+      <Image
+        src={iconSrc}
+        alt=""
+        width={Math.round(s.iconHeight / ICON_RATIO)}
+        height={s.iconHeight}
+        style={{ height: s.iconHeight, width: "auto" }}
+      />
+      <span className={`font-serif tracking-tight ${s.text} ${textColor}`}>
+        {label}
       </span>
-      <span className={`font-serif tracking-tight ${s.text}`}>{label}</span>
     </span>
   );
 }
