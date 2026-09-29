@@ -2,7 +2,6 @@ import type { Property, RoomType } from "@/lib/types";
 import { RoomCard } from "@/components/room-card";
 import { AmenitiesList } from "@/components/amenities-list";
 import { ScrollGallery } from "@/components/scroll-gallery";
-import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal } from "@/components/reveal";
 import { HeroVideo } from "@/components/hero-video";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
@@ -100,26 +99,6 @@ export function PropertyLanding({
           ...property.gallery,
         ])}
       />
-
-      <Reveal>
-        <section
-          id="contact"
-          className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28"
-        >
-          <div className="text-center">
-            <h2 className="font-semibold text-3xl text-[#3D2709] sm:text-4xl">
-              Ready to book your stay?
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-stone-600">
-              Send us your dates and we&apos;ll get back to you to confirm
-              availability.
-            </p>
-          </div>
-          <div className="mt-10">
-            <InquiryForm propertyId={property.id} rooms={rooms} />
-          </div>
-        </section>
-      </Reveal>
     </>
   );
 }

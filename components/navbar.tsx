@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 type NavbarProps =
   | { variant?: "brand" }
@@ -48,7 +49,9 @@ export function Navbar(props: NavbarProps) {
 
   const brandLabel = isProperty ? props.propertyName : "The Aluna";
   const homeHref = isProperty ? base : "/";
-  const bookHref = `${base}#${accommodationsAnchor}`;
+  const whatsappHref = buildWhatsAppHref(
+    `Hi, I'd like to book a stay at ${brandLabel}.`
+  );
 
   function closeMenu() {
     setMenuOpen(false);
@@ -91,7 +94,9 @@ export function Navbar(props: NavbarProps) {
         </nav>
 
         <motion.a
-          href={bookHref}
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className={`hidden rounded px-6 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors duration-300 md:block ${
@@ -176,7 +181,9 @@ export function Navbar(props: NavbarProps) {
                 </nav>
 
                 <motion.a
-                  href={bookHref}
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={closeMenu}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -194,11 +201,13 @@ export function Navbar(props: NavbarProps) {
                 >
                   <p className="mb-2 text-sm text-gray-600">Contact Us</p>
                   <a
-                    href={`${base}#contact`}
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={closeMenu}
                     className="text-sm font-semibold text-black hover:text-black/70"
                   >
-                    Send us your dates
+                    Chat with us on WhatsApp
                   </a>
                 </motion.div>
               </div>

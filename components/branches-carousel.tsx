@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Property } from "@/lib/types";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 function BranchCard({
   property,
@@ -65,12 +65,16 @@ function BranchCard({
           transition={{ duration: 0.5, delay: index * 0.15 + 0.4, ease: "easeOut" }}
           className="mt-5 flex items-center gap-6"
         >
-          <Link
-            href={`/properties/${property.slug}#contact`}
+          <a
+            href={buildWhatsAppHref(
+              `Hi, I'd like to book a stay at ${property.name}.`
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
             className="cursor-pointer rounded-full px-5 py-2 text-sm text-white ring-1 ring-white/60 transition hover:bg-white/10"
           >
             Book Now
-          </Link>
+          </a>
         </motion.div>
       </div>
     </div>

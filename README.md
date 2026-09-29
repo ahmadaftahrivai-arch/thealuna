@@ -1,8 +1,8 @@
 ## The Aluna — Hotel Booking Website
 
 Multi-property boutique guest house site. Guests browse properties, view
-rooms, and send a booking inquiry (no online payment yet — inquiries are
-followed up manually).
+rooms, and reach out to book via WhatsApp — no online payment or inline
+inquiry form, bookings are followed up manually over chat.
 
 - **Framework**: Next.js (App Router) + TypeScript + Tailwind CSS
 - **Hosting**: Vercel
@@ -21,18 +21,17 @@ app/
   properties/[slug]/
     layout.tsx                      Fetches the property, renders its navbar/footer
     page.tsx                        Renders <PropertyLanding>
-  api/inquiries/route.ts            Validates + inserts inquiries into Supabase
 components/
   property-landing.tsx              A property's full page: hero, #about, room
-                                     carousel, #rooms, amenities, #gallery, #contact
-                                     (inquiry form inline)
+                                     carousel, #rooms, amenities, #gallery
   navbar.tsx, footer.tsx, reveal.tsx (scroll-in animation),
-  feature-carousel.tsx, room-card.tsx, gallery-grid.tsx,
-  amenities-list.tsx, inquiry-form.tsx
+  feature-carousel.tsx, room-card.tsx, amenities-list.tsx,
+  whatsapp-button.tsx               Floating "chat on WhatsApp" button
 lib/
   brand.ts                          Brand-level copy (name, tagline, hero image) for "/"
   data.ts                           Data access layer (Supabase, falls back to mock data)
   mock-data.ts                      Sample property/room data for local dev
+  whatsapp.ts                       Builds wa.me links for every "Book Now" CTA
   supabase/                         Supabase client factories
 supabase/schema.sql                 Table definitions, RLS policies, and seed data
 ```
@@ -51,9 +50,10 @@ without a Supabase project — useful for building/reviewing UI first.
 
 1. Create a project at [supabase.com](https://supabase.com).
 2. In the SQL editor, run `supabase/schema.sql`. This creates the
-   `properties`, `room_types`, and `inquiries` tables with row-level security
-   (public read on properties/room_types, public insert-only on inquiries)
-   and inserts one sample property with two rooms.
+   `properties` and `room_types` tables (public read via row-level security)
+   and inserts sample properties with their rooms. It also creates an
+   `inquiries` table for possible future use, but nothing in the app writes
+   to it currently — booking goes through WhatsApp instead.
 3. Copy `.env.example` to `.env.local` and fill in the values from
    **Project Settings → API**:
 
@@ -75,11 +75,12 @@ To add more properties, insert rows into `properties` / `room_types` via the
 Supabase Table Editor. They'll appear automatically in the homepage's
 "Our Locations" section and at `/properties/<slug>`.
 
-### Viewing inquiries
+### How booking works
 
-Booking inquiries submitted through the contact form are stored in the
-`inquiries` table. View them in the Supabase Table Editor or SQL editor —
-there's currently no admin UI or automatic email notification.
+"Book Now" buttons and the floating WhatsApp button (`components/
+whatsapp-button.tsx`, `lib/whatsapp.ts`) open a pre-filled `wa.me` chat
+rather than submitting a form. Swap the placeholder `WHATSAPP_NUMBER` in
+`lib/whatsapp.ts` for the real business number before launch.
 
 ### Deploying to Vercel
 

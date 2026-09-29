@@ -1,11 +1,8 @@
 import { MessageCircle } from "lucide-react";
-
-// Placeholder number — swap for the real business WhatsApp line before launch.
-const WHATSAPP_NUMBER = "6281234567890";
-const WHATSAPP_MESSAGE = "Hi, I'd like to ask about a stay at The Aluna.";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 export function WhatsAppButton() {
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const href = buildWhatsAppHref("Hi, I'd like to ask about a stay at The Aluna.");
 
   return (
     <a

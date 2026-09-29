@@ -94,8 +94,8 @@ export default async function HomePage() {
               Ready to plan your stay?
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-stone-600">
-              Pick a location above and send a booking inquiry directly to
-              that property.
+              Pick a location above and reach out on WhatsApp to book your
+              stay directly with that property.
             </p>
             <Link
               href="#locations"

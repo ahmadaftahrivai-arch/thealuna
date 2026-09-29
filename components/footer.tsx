@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getProperties } from "@/lib/data";
 import { brand } from "@/lib/brand";
 import { Logo } from "@/components/logo";
+import { buildWhatsAppHref } from "@/lib/whatsapp";
 
 export async function Footer() {
   const properties = await getProperties();
@@ -50,9 +51,16 @@ export async function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#contact" className="text-white transition-colors hover:text-white/70">
+                <a
+                  href={buildWhatsAppHref(
+                    `Hi, I'd like to ask about a stay at ${brand.name}.`
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white transition-colors hover:text-white/70"
+                >
                   Contact Us
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

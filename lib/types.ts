@@ -26,15 +26,3 @@ export type RoomType = {
   capacity: number;
   images: string[];
 };
-
-export type InquiryInput = {
-  property_id: string;
-  room_type_id?: string | null;
-  name: string;
-  email: string;
-  phone: string;
-  check_in: string;
-  check_out: string;
-  guests: number;
-  message?: string;
-};
