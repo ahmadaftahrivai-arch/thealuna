@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Property, RoomType } from "@/lib/types";
 import { RoomCard } from "@/components/room-card";
 import { AmenitiesList } from "@/components/amenities-list";
-import { GalleryGrid } from "@/components/gallery-grid";
+import { ScrollGallery } from "@/components/scroll-gallery";
 import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal } from "@/components/reveal";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
@@ -84,14 +84,9 @@ export function PropertyLanding({
         </section>
       </Reveal>
 
-      <Reveal>
-        <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
-          <h2 className="font-bold text-3xl text-stone-900">Gallery</h2>
-          <div className="mt-8">
-            <GalleryGrid images={[property.cover_image, ...property.gallery]} />
-          </div>
-        </section>
-      </Reveal>
+      <section id="gallery" className="scroll-mt-20">
+        <ScrollGallery images={[property.cover_image, ...property.gallery]} />
+      </section>
 
       <Reveal>
         <section

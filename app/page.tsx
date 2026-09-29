@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
-import { GalleryGrid } from "@/components/gallery-grid";
+import { ScrollGallery } from "@/components/scroll-gallery";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { BranchesCarousel } from "@/components/branches-carousel";
 import { getProperties } from "@/lib/data";
@@ -67,14 +67,9 @@ export default async function HomePage() {
           <BranchesCarousel properties={properties} />
         </section>
 
-        <Reveal>
-          <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
-            <h2 className="font-bold text-3xl text-stone-900">Gallery</h2>
-            <div className="mt-8">
-              <GalleryGrid images={galleryImages} />
-            </div>
-          </section>
-        </Reveal>
+        <section id="gallery" className="scroll-mt-20">
+          <ScrollGallery images={galleryImages} />
+        </section>
 
         <Reveal>
           <section id="contact" className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28 text-center">
