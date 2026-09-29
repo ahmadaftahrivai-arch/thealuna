@@ -60,7 +60,7 @@ export const mockProperties: Property[] = [
     description:
       "Tucked among rice terraces, this second Aluna property trades beach breeze for jungle quiet — the same unhurried rhythm, a different backdrop.",
     cover_image:
-      "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1600&auto=format&fit=crop",
     amenities: [
       "Free Wi-Fi",
       "Rice Field View",
@@ -69,20 +69,19 @@ export const mockProperties: Property[] = [
       "Breakfast Included",
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop&crop=entropy",
     ],
     highlights: [
       {
         image:
-          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop",
         title: "Designed for Slow Living",
         description:
           "Tucked among rice terraces, this second Aluna property trades beach breeze for jungle quiet — the same unhurried rhythm, a different backdrop.",
       },
       {
         image:
-          "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.7",
         title: "Warm, Attentive Service",
         description:
           "Our hosts know the trails, the best warung, and exactly when the mist clears over the terraces. Expect honest recommendations and a homemade breakfast every morning.",
@@ -123,7 +122,7 @@ export const mockRoomTypes: RoomType[] = [
     price: 900000,
     capacity: 2,
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=1200&auto=format&fit=crop&crop=focalpoint&fp-x=0.3",
     ],
   },
 ];
