@@ -23,14 +23,15 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
   return (
     <div className="grid gap-10 sm:grid-cols-2 sm:items-center sm:gap-16">
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-stone-200">
-        <Image
-          key={slide.image}
-          src={slide.image}
-          alt={slide.title}
-          fill
-          className="object-cover transition-opacity duration-500"
-          sizes="(min-width: 640px) 50vw, 100vw"
-        />
+        <div key={index} className="animate-fade-in absolute inset-0">
+          <Image
+            src={slide.image}
+            alt={slide.title}
+            fill
+            className="object-cover"
+            sizes="(min-width: 640px) 50vw, 100vw"
+          />
+        </div>
       </div>
 
       <div>
