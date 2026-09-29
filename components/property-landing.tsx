@@ -37,7 +37,7 @@ export function PropertyLanding({
           <p className="animate-fade-in text-xs uppercase tracking-[0.3em] text-white/80">
             {property.location}
           </p>
-          <h1 className="animate-fade-in-up mt-4 font-serif text-5xl leading-[1.05] sm:text-7xl">
+          <h1 className="animate-fade-in-up mt-4 font-bold text-5xl leading-[1.05] sm:text-7xl">
             {property.name}
           </h1>
           <p className="animate-fade-in-up mt-4 max-w-md text-sm uppercase tracking-[0.2em] text-white/70">
@@ -61,7 +61,7 @@ export function PropertyLanding({
       {rooms.length > 0 && (
         <Reveal>
           <section id="rooms" className="mx-auto max-w-6xl scroll-mt-20 px-6 pb-24">
-            <h2 className="font-serif text-3xl text-stone-900">Rooms</h2>
+            <h2 className="font-bold text-3xl text-stone-900">Rooms</h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {rooms.map((room, i) => (
                 <Reveal key={room.id} delay={i * 100}>
@@ -76,7 +76,7 @@ export function PropertyLanding({
       <Reveal>
         <section className="bg-stone-100 py-24">
           <div className="mx-auto max-w-6xl px-6">
-            <h2 className="font-serif text-3xl text-stone-900">Amenities</h2>
+            <h2 className="font-bold text-3xl text-stone-900">Amenities</h2>
             <div className="mt-8">
               <AmenitiesList amenities={property.amenities} />
             </div>
@@ -86,7 +86,7 @@ export function PropertyLanding({
 
       <Reveal>
         <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
-          <h2 className="font-serif text-3xl text-stone-900">Gallery</h2>
+          <h2 className="font-bold text-3xl text-stone-900">Gallery</h2>
           <div className="mt-8">
             <GalleryGrid images={[property.cover_image, ...property.gallery]} />
           </div>
@@ -99,7 +99,7 @@ export function PropertyLanding({
           className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28"
         >
           <div className="text-center">
-            <h2 className="font-serif text-3xl text-stone-900 sm:text-4xl">
+            <h2 className="font-bold text-3xl text-stone-900 sm:text-4xl">
               Ready to book your stay?
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-stone-600">

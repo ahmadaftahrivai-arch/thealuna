@@ -37,18 +37,18 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
         <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
           {slide.eyebrow}
         </p>
-        <h2 className="mt-3 font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
+        <h2 className="mt-3 font-bold text-3xl leading-tight text-stone-900 sm:text-4xl">
           {slide.title}
         </h2>
         <p className="mt-4 max-w-md text-stone-600">{slide.description}</p>
 
         {slides.length > 1 && (
-          <div className="mt-8 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-6 text-xl text-stone-900">
             <button
               type="button"
               onClick={() => go(-1)}
               aria-label="Previous"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900"
+              className="transition-opacity hover:opacity-60"
             >
               ←
             </button>
@@ -56,7 +56,7 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
               type="button"
               onClick={() => go(1)}
               aria-label="Next"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900"
+              className="transition-opacity hover:opacity-60"
             >
               →
             </button>

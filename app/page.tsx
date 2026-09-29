@@ -41,7 +41,7 @@ export default async function HomePage() {
             <p className="animate-fade-in text-xs uppercase tracking-[0.3em] text-white/80">
               Boutique Guest Houses in Bali
             </p>
-            <h1 className="animate-fade-in-up mt-4 font-serif text-5xl leading-[1.05] sm:text-7xl">
+            <h1 className="animate-fade-in-up mt-4 font-bold text-5xl leading-[1.05] sm:text-7xl">
               {brand.name}
             </h1>
             <p className="animate-fade-in-up mt-4 max-w-md text-sm uppercase tracking-[0.2em] text-white/70">
@@ -65,7 +65,7 @@ export default async function HomePage() {
         <Reveal>
           <section id="locations" className="scroll-mt-20 bg-stone-100 py-24">
             <div className="mx-auto max-w-6xl px-6">
-              <h2 className="font-serif text-3xl text-stone-900">
+              <h2 className="font-bold text-3xl text-stone-900">
                 Our Locations
               </h2>
 
@@ -89,7 +89,7 @@ export default async function HomePage() {
                         <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
                           {property.location}
                         </p>
-                        <h3 className="mt-2 font-serif text-xl text-stone-900">
+                        <h3 className="mt-2 font-bold text-xl text-stone-900">
                           {property.name}
                         </h3>
                       </div>
@@ -103,7 +103,7 @@ export default async function HomePage() {
 
         <Reveal>
           <section id="gallery" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
-            <h2 className="font-serif text-3xl text-stone-900">Gallery</h2>
+            <h2 className="font-bold text-3xl text-stone-900">Gallery</h2>
             <div className="mt-8">
               <GalleryGrid images={galleryImages} />
             </div>
@@ -112,7 +112,7 @@ export default async function HomePage() {
 
         <Reveal>
           <section id="contact" className="mx-auto max-w-2xl scroll-mt-20 px-6 py-28 text-center">
-            <h2 className="font-serif text-3xl text-stone-900 sm:text-4xl">
+            <h2 className="font-bold text-3xl text-stone-900 sm:text-4xl">
               Ready to plan your stay?
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-stone-600">
