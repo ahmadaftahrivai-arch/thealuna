@@ -1,10 +1,10 @@
-import Image from "next/image";
 import type { Property, RoomType } from "@/lib/types";
 import { RoomCard } from "@/components/room-card";
 import { AmenitiesList } from "@/components/amenities-list";
 import { ScrollGallery } from "@/components/scroll-gallery";
 import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal } from "@/components/reveal";
+import { HeroVideo } from "@/components/hero-video";
 import { FeatureCarousel, type CarouselSlide } from "@/components/feature-carousel";
 import { OffersCarousel } from "@/components/offers-carousel";
 import { DiscoverSection, buildDiscoverItems } from "@/components/discover-section";
@@ -26,13 +26,10 @@ export function PropertyLanding({
   return (
     <>
       <section className="relative flex h-[92vh] min-h-[560px] w-full items-end">
-        <Image
-          src={property.cover_image}
+        <HeroVideo
+          src="/videos/hero.mp4"
+          poster="/videos/hero-poster.jpg"
           alt={property.name}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#3D2709]/80 via-[#3D2709]/20 to-transparent" />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 text-white sm:pb-20">

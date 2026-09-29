@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
+import { HeroVideo } from "@/components/hero-video";
 import { Footer } from "@/components/footer";
 import { Reveal } from "@/components/reveal";
 import { ScrollGallery } from "@/components/scroll-gallery";
@@ -36,13 +36,10 @@ export default async function HomePage() {
       <Navbar />
       <main className="flex-1">
         <section className="relative flex h-[92vh] min-h-[560px] w-full items-end">
-          <Image
-            src={brand.heroImage}
+          <HeroVideo
+            src="/videos/hero.mp4"
+            poster="/videos/hero-poster.jpg"
             alt={brand.name}
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#3D2709]/80 via-[#3D2709]/20 to-transparent" />
           <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 text-white sm:pb-20">
