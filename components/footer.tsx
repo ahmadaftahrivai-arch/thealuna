@@ -7,7 +7,7 @@ export async function Footer() {
   const properties = await getProperties();
 
   return (
-    <footer className="bg-gradient-to-b from-[#3D2709] to-[#211503] text-white">
+    <footer id="footer" className="scroll-mt-20 bg-gradient-to-b from-[#3D2709] to-[#211503] text-white">
       <div className="mx-auto max-w-6xl px-6 pt-12 pb-8 lg:pt-16">
         <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:gap-12">
           <div className="w-full lg:w-1/2">

@@ -42,7 +42,7 @@ export function Navbar(props: NavbarProps) {
     { name: "About", href: `${base}#about` },
     { name: "Events", href: `${base}#events` },
     { name: "Accommodations", href: `${base}#${accommodationsAnchor}` },
-    { name: "Contact Us", href: `${base}#contact` },
+    { name: "Contact Us", href: `${base}#footer` },
     { name: "Gallery", href: `${base}#gallery` },
   ];
 
