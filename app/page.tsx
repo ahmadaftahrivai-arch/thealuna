@@ -35,7 +35,7 @@ export default async function HomePage() {
     <>
       <Navbar />
       <main className="flex-1">
-        <section className="relative flex h-[92vh] min-h-[560px] w-full items-end">
+        <section className="relative flex h-dvh min-h-[560px] w-full items-end">
           <HeroVideo
             src="/videos/hero.mp4"
             poster="/videos/hero-poster.jpg"
