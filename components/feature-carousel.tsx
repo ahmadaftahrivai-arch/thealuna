@@ -23,7 +23,7 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
   return (
     <div className="grid gap-10 sm:grid-cols-2 sm:items-center sm:gap-16">
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-stone-200">
-        <div key={index} className="animate-fade-in absolute inset-0">
+        <div key={index} className="animate-fade-in-fast absolute inset-0">
           <Image
             src={slide.image}
             alt={slide.title}

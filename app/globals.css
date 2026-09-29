@@ -30,6 +30,10 @@
   animation: fade-in 900ms ease-out both;
 }
 
+.animate-fade-in-fast {
+  animation: fade-in 350ms ease-out both;
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 900ms ease-out both;
   animation-delay: 150ms;
