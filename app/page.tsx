@@ -54,21 +54,9 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <Reveal>
-          <section id="about" className="mx-auto max-w-3xl scroll-mt-20 px-6 pt-24 text-center">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500">
-              About
-            </p>
-            <h2 className="mt-3 font-serif text-3xl leading-tight text-stone-900 sm:text-4xl">
-              A Collection of Slow Stays
-            </h2>
-            <p className="mt-6 text-stone-600">{brand.description}</p>
-          </section>
-        </Reveal>
-
         {slides.length > 0 && (
           <Reveal>
-            <section className="mx-auto max-w-6xl px-6 py-24">
+            <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
               <FeatureCarousel slides={slides} />
             </section>
           </Reveal>
