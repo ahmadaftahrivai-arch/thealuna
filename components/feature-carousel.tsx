@@ -35,7 +35,7 @@ export function FeatureCarousel({ slides }: { slides: CarouselSlide[] }) {
       </div>
 
       <div>
-        <div key={index} className="animate-fade-in">
+        <div key={index} className="animate-fade-in-blur">
           <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
             {slide.eyebrow}
           </p>

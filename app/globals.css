@@ -26,12 +26,27 @@
   }
 }
 
+@keyframes fade-in-blur {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 900ms ease-out both;
 }
 
 .animate-fade-in-fast {
   animation: fade-in 350ms ease-out both;
+}
+
+.animate-fade-in-blur {
+  animation: fade-in-blur 900ms ease-out both;
 }
 
 .animate-fade-in-up {
